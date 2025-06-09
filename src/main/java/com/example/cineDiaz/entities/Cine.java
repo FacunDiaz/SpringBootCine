@@ -20,7 +20,7 @@ public class Cine extends Base{
     private String direccion;
 
     //composición
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true) // cascadeType hace que si el objeto principal es eliminado, la eliminación se propague a objetos dependientes
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER) // cascadeType hace que si el objeto principal es eliminado, la eliminación se propague a objetos dependientes
     @JoinColumn(name= "id_cine")
     private List<Pelicula> peliculas;  //hacer la relación una composición
 

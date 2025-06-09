@@ -18,7 +18,8 @@ public class Empleado extends Base{
     private String nombre;
     private int dni;
 
-    @ManyToMany(fetch= FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    //fetch= FetchType.EAGER,
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name= "empleado_cine", joinColumns= @JoinColumn(name= "empleado_id", referencedColumnName= "id"),
             inverseJoinColumns = @JoinColumn(name= "cine_id", referencedColumnName= "id")

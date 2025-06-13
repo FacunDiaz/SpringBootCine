@@ -1,5 +1,8 @@
 package com.example.cineDiaz.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,4 +40,12 @@ public class Venta extends Base{
             inverseJoinColumns = @JoinColumn(name= "id_funcion", referencedColumnName= "id")
     )
     private List<Funcion> funciones= new ArrayList();
+
+    public void addCliente(Cliente cliente){
+        this.clientes.add(cliente);
+    }
+
+    public void addFuncion(Funcion funcion){
+        this.funciones.add(funcion);
+    }
 }

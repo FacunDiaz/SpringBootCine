@@ -58,4 +58,8 @@ public class Cine extends Base{
         this.direccion = direccion;
         this.peliculas = new ArrayList<>();
     }
+
+    public void addVentas(Venta venta){
+        this.ventas.add(venta);
+    }
 }

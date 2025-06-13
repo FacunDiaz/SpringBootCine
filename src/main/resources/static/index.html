@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comprar Entrada</title>
+</head>
+<body>
+    <h1>Elegí una película</h1>
+    <select id="selector-peliculas">
+        <option value="">Cargando...</option>
+    </select>
+    <p id="pelicula-seleccionada"></p>
+
+    <h2>Buscar Funciones </h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Pelicula</th>
+                <th>Horario</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="td-pelicula"></td>
+                <td id="td-horario"></td>
+            </tr>
+        </tbody>
+    </table>
+    <select id="selector-funciones">
+        <option value="">Cargando...</option>
+    </select>
+    <p id="funcion-seleccionada"></p>
+
+
+    <h2>Seleccionar Entrada Disponible </h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Asiento</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="td-Asiento"></td>
+                <td id="td-Precio"></td>
+            </tr>
+        </tbody>
+    </table>
+    <select id="selector-Entrada">
+        <option value="">Cargando...</option>
+    </select>
+    <p id="Entrada-seleccionada"></p>
+
+    <form>
+        <input type="text" id="nombreusuario" placeholder="Nombre Completo">
+        <input type="email" id="correousuario" placeholder="Correo Electronico">
+        <select>
+            <option>TARJETA</option>
+            <option>EFECTIVO</option>
+        </select>
+        <button type="submit" onclick="comprarEntrada()">Comprar Entrada</button>
+    </form>
+
+    <script src="app.js"></script>
+
+</body>
+</html>

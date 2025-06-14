@@ -2,7 +2,6 @@ package com.example.cineDiaz.controllers;
 
 import com.example.cineDiaz.dtos.VentaDTO;
 import com.example.cineDiaz.entities.*;
-import com.example.cineDiaz.services.ClienteService;
 import com.example.cineDiaz.servicesImpl.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,8 +18,6 @@ public class VentaController extends BaseControllerImpl<Venta, VentaServiceImpl>
 
     @Autowired
     private FuncionServiceImpl funcionService;
-    @Autowired
-    private ClienteServiceImpl clienteService;
     @Autowired
     private PagoServiceImpl pagoService;
     @Autowired
@@ -41,9 +38,10 @@ public class VentaController extends BaseControllerImpl<Venta, VentaServiceImpl>
 
             Funcion funcion = funcionService.findById(vent.getFuncionId());
             venta.addFuncion(funcion);
-
-            // Obtener todos los clientes y buscar si ya existe
-            Cliente cliente = new Cliente(vent.getNombre(),vent.getCorreo());
+            boolean flag = false;
+            Cliente cliente = new Cliente();
+            cliente.setNombre(vent.getNombre());
+            cliente.setEmail(vent.getCorreo());
             venta.addCliente(cliente);
 
             servicio.save(venta);

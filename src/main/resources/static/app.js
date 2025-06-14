@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
           selectorEntradas.innerHTML = '<option value="">Seleccioná una entrada</option>';
           entradas.forEach(e => {
             const option = document.createElement('option');
-            option.value = e.id;
+            option.value = e.monto;
             option.textContent = `Asiento ${e.asiento} - $${e.precio}`;
             selectorEntradas.appendChild(option);
           });
@@ -63,48 +63,35 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
   
-    // 5. Comprar entrada (envía POST)
-   // 4. Comprar entrada
    document.getElementById("form-compra").addEventListener("submit", comprarEntrada);
 
    function comprarEntrada(event) {
-     event.preventDefault();
- 
+    event.preventDefault();
      const nombre = document.getElementById("nombreusuario").value;
      const correo = document.getElementById("correousuario").value;
      const tipoPago = document.getElementById("tipo-pago").value;
-     const entradaId = document.getElementById("selector-Entrada").value;
+     const montodinero = document.getElementById("selector-Entrada").value;
      const funcionId = document.getElementById("selector-funciones").value;
  
-     if (!nombre || !correo || !tipoPago || !entradaId || !funcionId) {
+     if (!nombre || !correo || !tipoPago || !montodinero || !funcionId) {
        alert("Completá todos los campos y seleccioná función y entrada.");
        return;
      }
  
-     const entrada = entradasMap.get(entradaId);
-     const monto = entrada ? entrada.precio : 0; // por si el backend necesita el monto explícito
- 
      const Venta = {
-       cliente: {
-         nombre: nombre,
-         correo: correo
-       },
-       tipoPago: tipoPago,
-       entradaId: parseInt(entradaId),
-       funcionId: parseInt(funcionId),
-       monto: monto // opcional, si tu backend lo requiere
-
-       pagos : [
-        {}
-       ]
-     };
- 
-     fetch("http://localhost:9000/api/compras", {
+        fecha: new Date().toISOString(),
+        monto: parseInt(montodinero),
+        tipo: tipoPago,
+        nombre: nombre,
+        correo: correo,
+        funcionId: parseInt(funcionId)
+    };
+     fetch("http://localhost:9000/api/ventas/crear", {
        method: "POST",
        headers: {
          "Content-Type": "application/json"
        },
-       body: JSON.stringify(payload)
+       body: JSON.stringify(Venta)
      })
        .then(res => {
          if (res.ok) {
@@ -119,4 +106,3 @@ document.addEventListener("DOMContentLoaded", () => {
          alert("⚠️ No se pudo conectar con el servidor");
        });
    }
- });

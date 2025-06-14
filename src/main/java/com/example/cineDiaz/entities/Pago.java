@@ -16,10 +16,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Pago extends Base{
     private double monto;
-
-    @Enumerated(EnumType.STRING)
     private TipoPago tipo;
 }
